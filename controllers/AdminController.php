@@ -176,4 +176,28 @@ class AdminController {
         // On redirige vers la page d'administration.
         Utils::redirect("admin");
     }
+
+    /**
+     * Visualisation de l'audience des articles.
+     * @return void
+     */
+    public function showAudience(?string $orderBy ) :void
+    {
+        $this->checkIfUserIsConnected();
+
+        $id = Utils::request("id", -1);
+
+        // On selectionne les articles 
+        $articleManager = new ArticleManager();
+        $articles = $articleManager->getAllArticles();
+
+        //On arrange $articles dans l'ordre souhaité
+        
+
+        // On ouvre la page
+        $view = new View("Audience");
+        $view->render("audience", ['articles' => $articles]);
+
+    }
+
 }

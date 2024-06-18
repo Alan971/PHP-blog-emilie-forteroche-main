@@ -20,7 +20,8 @@
     --dateColor: #3f56a4;
     --quoteColor: #c5cbe4;
     --commentPaleColor: #99a140;
-    --commentColor: #255E33;
+    --commentColor: #255e33;
+    --alternateCommentPaleColor: #979c5d;
 }
 
 /**
@@ -311,10 +312,15 @@ a.info {
     margin-bottom: 20px;
     background-color: var(--commentPaleColor);
     color: white;
+    max-width: 100%;
 }
 
 .articleLine {
     display: flex; 
+}
+
+.flag0{
+    background-color: var(--alternateCommentPaleColor);
 }
 
 .articleLine div {
@@ -324,12 +330,27 @@ a.info {
 
 .articleLine .title {
     font-weight: bold;
-    min-width: 200px;
-    width: 200px;
+    min-width: 500px;
+    width: 500px;
 }
 
 .articleLine .content {
     flex-grow: 1;
+}
+
+.articleLine .viewNumber {
+    min-width: 130px;
+    width: 130px;
+}
+
+.articleLine .commentNumber {
+    min-width: 130px;
+    width: 130px;
+}
+
+.articleLine .publicationDate {
+    min-width: 250px;
+    width: 250px;
 }
 
 .articleLine > div {
