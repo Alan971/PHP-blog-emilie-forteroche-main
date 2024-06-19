@@ -182,20 +182,26 @@ class AdminController {
      * Visualisation de l'audience des articles.
      * @return void
      */
-    public function showAudience(?string $orderBy = null) :void
+    public function showAudience(?array $orderBy = null) :void
     {
         $this->checkIfUserIsConnected();
 
-        $id = Utils::request("id", -1);
-
-        // On selectionne les articles dans l'ordre souhaité
+        $type = Utils::request("type", "");
+        $upOrDown = Utils::request("upOrDown", "");
+        
+        // traitement de orderBy
+        $newOrderBy = new AdminOrderArticle();
+        $newOrderBy->setOrderBy($type, $upOrDown);
+        $column = $newOrderBy->getOrderBy('col');
+        $upOrDown = $newOrderBy->getOrderBy('upOrDown');
+        var_dump($upOrDown);
+        // TODO On selectionne les articles dans l'ordre souhaité
         $articleManager = new ArticleManager();
-        $articles = $articleManager->getAllArticles($orderBy);
-
+        $articles = $articleManager->getAllArticles([$column, $upOrDown]);
 
         // On ouvre la page
         $view = new View("Audience");
-        $view->render("audience", ['articles' => $articles]);
+        $view->render("audience", ['articles' => $articles, 'column' => $column, 'upOrDown' => $upOrDown]);
 
     }
 

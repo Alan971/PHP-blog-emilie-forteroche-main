@@ -48,7 +48,8 @@ class View
     private function _renderViewFromTemplate(string $viewPath, array $params = []) : string
     {  
         if (file_exists($viewPath)) {
-            extract($params); // On transforme les diverses variables stockées dans le tableau "params" en véritables variables qui pourront être lues dans le template.
+            extract($params); // On transforme les diverses variables stockées dans le tableau "params" 
+            // en véritables variables qui pourront être lues dans le template.
             ob_start();
             require($viewPath);
             return ob_get_clean();
