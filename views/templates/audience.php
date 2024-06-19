@@ -15,11 +15,28 @@
             if($flag == 0){
     ?>
                 <div class="articleLine">
-                    <div class="title"><a href="index.php?action=showAudience&type=<?=$column?>&upOrDown=<?=$upOrDown?>">Titres des articles
-                        <?if($column == 'title'){echo $upOrDown;}?></a></div>
-                    <div class="viewNumber"><a href="#">Nombre de vues</a></div>
-                    <div class="commentNumber"><a href="#">Nombre de commentaires</a></div>
-                    <div class="publicationDate"><a href="#">Date de publication</a></div>
+                    <div class="title">
+                        <a href="index.php?action=showAudience&type=title&upOrDown=<?=$upOrDown?>">
+                            Titres des articles <?if($column == 'title'){echo "  " . $upOrDown;}?>
+                        </a>
+                    </div>
+                    <div class="viewNumber">
+                        <a href="index.php?action=showAudience&type=viewNumber&upOrDown=<?=$upOrDown?>">
+                            Nombre de vues <?if($column == 'viewNumber'){echo "  " . $upOrDown;}?>
+                        
+                        </a>
+                    </div>
+                    <div class="commentNumber">
+                        <a href="index.php?action=showAudience&type=commentNumber&upOrDown=<?=$upOrDown?>">
+                            Nombre de commentaires <?if($column == 'commentNumber'){echo "  " . $upOrDown;}?>
+                        </a>
+                    </div>
+                    <div class="publicationDate">
+                        <a href="index.php?action=showAudience&type=publicationDate&upOrDown=<?=$upOrDown?>">
+                            Date de publication <?if($column == 'publicationDate'){echo "  " . $upOrDown;}?>
+
+                        </a>
+                    </div>
                 </div>
     <?      }
     ?>

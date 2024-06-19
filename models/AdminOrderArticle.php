@@ -1,54 +1,56 @@
 <?php
 
+
 class AdminOrderArticle
 {
-    private ?array $orderBy;
+    private static $orderBy; 
     private const UPARROW = "↑";
     private const DOWNARROW = "↓";
 
     public function __construct()
     {
-        $this->orderBy['col'] = 'title';
-        $this->orderBy['upOrDown'] = '↓'; 
+        if (self::$orderBy === null) {
+            echo "0 ";
+            self::$orderBy = new Order("title", "↓");
+        }
     }
 
-    public function getOrderBy(string $choice) : string
+    // la fonction revoie soit l'état colonne soit l'état croissant
+    public function getOrderBy() : Order
     {
-        if($choice == 'col')
-        {
-            return $this->orderBy['col'];
-        }
-        elseif ($choice == 'upOrDown')
-        {
-            return $this->orderBy['upOrDown'];
-        }
-
+            return self::$orderBy;         
     }
 
-    public function setOrderBy(string $type, string $upOrDown) : void
+    public function setOrderBy(Order $previousOrder ) : void
     {
-        if($type!="")
+        if($previousOrder->type!="")
         {
-            if($type == $this->orderBy['col'])
+            if($previousOrder->type == self::$orderBy->type)
             {
-                if($upOrDown == self::UPARROW)
+                echo "1 ";
+                if($previousOrder->upOrDown == self::UPARROW)
                 {
-                    $this->orderBy['upOrDown'] = self::DOWNARROW;
+                    echo "2 ";
+                    self::$orderBy->upOrDown = self::DOWNARROW;
                 }
                 else 
                 {
-                    $this->orderBy['upOrDown'] = self::UPARROW;
+                    echo "3 ";
+                    self::$orderBy->upOrDown = self::UPARROW;
                 }
             }
             else
             {
-                $this->orderBy['col'] = $type;
-                $this->orderBy['upOrDown'] = self::DOWNARROW;
+                echo "4 " . $previousOrder->type . "==" . self::$orderBy->type;
+                self::$orderBy->type = $previousOrder->type;
+                echo " et : " . $previousOrder->type . "==" . self::$orderBy->type;
+                self::$orderBy->upOrDown = self::DOWNARROW;
             }
         }
         else{
-            $this->orderBy['col'] = 'title';
-            $this->orderBy['upOrDown'] = '↓';   // ↑
+            echo "5 ";
+            self::$orderBy->type = 'title';
+            self::$orderBy->upOrDown = '↓';   // ↑
         }
     }
 
