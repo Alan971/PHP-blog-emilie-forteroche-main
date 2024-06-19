@@ -136,6 +136,7 @@ class AdminController {
         $id = Utils::request("id", -1);
         $title = Utils::request("title");
         $content = Utils::request("content");
+        $countView = Utils::request("countView");
 
         // On vérifie que les données sont valides.
         if (empty($title) || empty($content)) {
@@ -147,7 +148,8 @@ class AdminController {
             'id' => $id, // Si l'id vaut -1, l'article sera ajouté. Sinon, il sera modifié.
             'title' => $title,
             'content' => $content,
-            'id_user' => $_SESSION['idUser']
+            'id_user' => $_SESSION['idUser'],
+            'count_view'=> $countView
         ]);
         // On ajoute l'article.
         $articleManager = new ArticleManager();

@@ -13,6 +13,7 @@
         <textarea name="content" id="content" cols="30" rows="10" required><?= $article->getContent() ?></textarea>
         <input type="hidden" name="action" value="updateArticle">
         <input type="hidden" name="id" value="<?= $article->getId() ?>">
+        <input type="hidden" name="countView" value="<?= $article->getCountView() ?>">
         <button class="submit"><?= $article->getId() == -1 ? "Ajouter" : "Modifier" ?></button>
     </div>
 </form>

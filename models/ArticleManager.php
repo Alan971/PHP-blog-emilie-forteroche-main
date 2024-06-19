@@ -74,13 +74,27 @@ class ArticleManager extends AbstractEntityManager
      */
     public function updateArticle(Article $article) : void
     {
-        $sql = "UPDATE article SET title = :title, content = :content, count_view = :count_view, date_update = NOW() WHERE id = :id";
-        $this->db->query($sql, [
-            'title' => $article->getTitle(),
-            'content' => $article->getContent(),
-            'id' => $article->getId(),
-            'count_view' => $article->getCountView()
-        ]);
+        // select modification type (nb view ou article)
+        $sqlControl = "SELECT count_view FROM article WHERE id = :id";
+        $result = $this->db->query($sqlControl,['id'=>$article->getId()]);
+        $countControl = $result->fetch();
+        if($countControl['count_view'] == $article->getCountView()){
+            $sql = "UPDATE article SET title = :title, content = :content, count_view = :count_view, date_update = NOW() WHERE id = :id";
+            $this->db->query($sql, [
+                'title' => $article->getTitle(),
+                'content' => $article->getContent(),
+                'id' => $article->getId(),
+                'count_view' => $article->getCountView()
+            ]);
+        }
+        else 
+        {
+            $sql = "UPDATE article SET count_view = :count_view WHERE id = :id";
+            $this->db->query($sql, [
+                'id' => $article->getId(),
+                'count_view' => $article->getCountView()
+            ]);
+        }
     }
 
     /**
