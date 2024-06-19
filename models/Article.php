@@ -10,7 +10,8 @@
     private string $title = "";
     private string $content = "";
     private ?DateTime $dateCreation = null;
-    private ?DateTime $dateUpdate = null;  
+    private ?DateTime $dateUpdate = null;
+    private int $countView = 0;  
 
     /**
      * Setter pour l'id de l'utilisateur. 
@@ -28,6 +29,21 @@
     public function getIdUser() : int 
     {
         return $this->idUser;
+    }
+
+    public function incrementCountView() : void 
+    {
+        $this->countView++;
+    }
+
+    public function setCountView(int $countView) : void
+    {
+        $this->countView = $countView;
+    }
+
+    public function getCountView() : int
+    {
+        return $this->countView;
     }
 
     /**

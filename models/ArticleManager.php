@@ -9,7 +9,7 @@ class ArticleManager extends AbstractEntityManager
      * Récupère tous les articles.
      * @return array : un tableau d'objets Article.
      */
-    public function getAllArticles() : array
+    public function getAllArticles(?string $orderBy = null) : array
     {
         $sql = "SELECT * FROM article";
         $result = $this->db->query($sql);
@@ -74,11 +74,12 @@ class ArticleManager extends AbstractEntityManager
      */
     public function updateArticle(Article $article) : void
     {
-        $sql = "UPDATE article SET title = :title, content = :content, date_update = NOW() WHERE id = :id";
+        $sql = "UPDATE article SET title = :title, content = :content, count_view = :count_view, date_update = NOW() WHERE id = :id";
         $this->db->query($sql, [
             'title' => $article->getTitle(),
             'content' => $article->getContent(),
-            'id' => $article->getId()
+            'id' => $article->getId(),
+            'count_view' => $article->getCountView()
         ]);
     }
 

@@ -24,7 +24,7 @@
     ?>
         <div class="articleLine flag<?=($flag%2)?>" >
             <div class="title"><?= $article->getTitle() ?></div>
-            <div class="viewNumber"><?= "A traiter" ?></div>
+            <div class="viewNumber"><?=$article->getCountView() ?></div>
             <div class="commentNumber"><?= "A traiter" ?></div>
             <div class="publicationDate"><?= Utils::convertDateToFrenchFormat($article->getDateCreation()) ?></div>
         </div>

@@ -149,7 +149,6 @@ class AdminController {
             'content' => $content,
             'id_user' => $_SESSION['idUser']
         ]);
-
         // On ajoute l'article.
         $articleManager = new ArticleManager();
         $articleManager->addOrUpdateArticle($article);
@@ -181,18 +180,16 @@ class AdminController {
      * Visualisation de l'audience des articles.
      * @return void
      */
-    public function showAudience(?string $orderBy ) :void
+    public function showAudience(?string $orderBy = null) :void
     {
         $this->checkIfUserIsConnected();
 
         $id = Utils::request("id", -1);
 
-        // On selectionne les articles 
+        // On selectionne les articles dans l'ordre souhaité
         $articleManager = new ArticleManager();
-        $articles = $articleManager->getAllArticles();
+        $articles = $articleManager->getAllArticles($orderBy);
 
-        //On arrange $articles dans l'ordre souhaité
-        
 
         // On ouvre la page
         $view = new View("Audience");
