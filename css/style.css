@@ -165,7 +165,7 @@ main {
     flex-direction: column;
     align-items: center;
     width: 80%;
-    max-width: 1000px;
+    max-width: 1330px;
     margin: 0 50px 100px 50px;
 }
 
@@ -312,7 +312,7 @@ a.info {
     margin-bottom: 20px;
     background-color: var(--commentPaleColor);
     color: white;
-    max-width: 100%;
+    width: 100%;
 }
 
 .articleLine {
@@ -330,33 +330,41 @@ a.info {
 
 .articleLine .title {
     font-weight: bold;
-    min-width: 500px;
-    width: 500px;
+    width: 40%;
+}
+
+.viewNumber p{
+    margin-left: auto;
+    margin-right: auto;
+}
+.commentNumber p{
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .articleLine .content {
     flex-grow: 1;
+    width : 40%;
 }
 
 .articleLine .viewNumber {
-    min-width: 130px;
-    width: 130px;
+    width: 15%;
+    text-align: center;
 }
 
 .articleLine .commentNumber {
-    min-width: 130px;
-    width: 130px;
+    width: 25%;
 }
 
 .articleLine .publicationDate {
-    min-width: 250px;
-    width: 250px;
+    width: 20%;
 }
 
 .articleLine > div {
     padding: 20px;
     border: 1px solid var(--backgroundColor);
 }
+
 
 /** 
  * Footer global de la page.

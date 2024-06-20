@@ -6,38 +6,41 @@
 class ArticleManager extends AbstractEntityManager 
 {
     /**
-     * Récupère tous les articles.
+     * Récupère tous les articles dans la base.
      * @return array : un tableau d'objets Article.
-     * 
+     * @param Order : utilise l'objet s'il existe pour trier les données de la baee
      */
     public function getAllArticles(?Order $orderBy = null) : array
     {
         $sql = "SELECT * FROM article";
-        switch($orderBy->type)
+        if(isset($orderBy))
         {
-            case "title" :
-                $sql .= " ORDER BY $orderBy->type ";
-                break;
-            case "viewNumber" :
-                $sql .= " ORDER BY count_view ";
-                break;
-            case "commentNumber" :
-                $sql = " SELECT a.*, COUNT(c.id_article) as compteur 
-                        FROM `article` a LEFT JOIN comment c ON c.id_article = a.id 
-                        GROUP BY a.id ORDER BY compteur  ";
-                break;
-            case "publicationDate" :
-                $sql .= " ORDER BY date_creation ";
-                break;
-        }
-        switch($orderBy->upOrDown)
-        {
-            case "↓" :
-                $sql .= "ASC";
-                break;
-            case "↑" :
-                $sql .= "DESC";
-                break;
+            switch($orderBy->type)
+            {
+                case "title" :
+                    $sql .= " ORDER BY $orderBy->type ";
+                    break;
+                case "viewNumber" :
+                    $sql .= " ORDER BY count_view ";
+                    break;
+                case "commentNumber" :
+                    $sql = " SELECT a.*, COUNT(c.id_article) as compteur 
+                            FROM `article` a LEFT JOIN comment c ON c.id_article = a.id 
+                            GROUP BY a.id ORDER BY compteur  ";
+                    break;
+                case "publicationDate" :
+                    $sql .= " ORDER BY date_creation ";
+                    break;
+            }
+            switch($orderBy->upOrDown)
+            {
+                case "↓" :
+                    $sql .= "ASC";
+                    break;
+                case "↑" :
+                    $sql .= "DESC";
+                    break;
+            }
         }
         $result = $this->db->query($sql);
         $articles = [];

@@ -41,12 +41,23 @@
     <?      }
     ?>
         <div class="articleLine flag<?=($flag%2)?>" >
-            <div class="title"><?= $article->getTitle() ?></div>
-            <div class="viewNumber"><?=$article->getCountView() ?></div>
-            <div class="commentNumber"><?= $article->getCountComments() ?></div>
-            <div class="publicationDate"><?= Utils::convertDateToFrenchFormat($article->getDateCreation()) ?></div>
+            <div class = "title">
+                <p><?= $article->getTitle() ?></p>
+            </div>
+            <div class = "viewNumber">
+                <p><?=$article->getCountView() ?></p>
+            </div>
+            <div class = "commentNumber">
+                <p><?= $article->getCountComments() ?></p>
+            </div>
+            <div class="publicationDate">
+                <p><?= Utils::convertDateToFrenchFormat($article->getDateCreation()) ?> </p>
+            </div>
         </div>
     <?php 
         $flag++;
         } ?>
+</div>
+<div>
+    <a class="submit" href="index.php?action=admin">Retour</a>
 </div>

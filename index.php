@@ -78,7 +78,10 @@ try {
             $adminController = new AdminController();
             $adminController->showAudience();
             break;            
-
+        case 'supprComment':
+            $adminController = new AdminController();
+            $adminController->commentRazor();
+            break;
         default:
             throw new Exception("La page demandée n'existe pas.");
     }

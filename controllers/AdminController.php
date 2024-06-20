@@ -200,9 +200,7 @@ class AdminController {
         $newOrderBy->setOrderBy($nextOrder, $previousOrder);
         $orderBy = $newOrderBy->getOrderBy();
 
-
-
-        // TODO On selectionne les articles dans l'ordre souhaité
+        // On selectionne les articles dans l'ordre souhaité
         $articleManager = new ArticleManager();
         $articles = $articleManager->getAllArticles($orderBy);
 
@@ -214,6 +212,24 @@ class AdminController {
         // On ouvre la page
         $view = new View("Audience");
         $view->render("audience", ['articles' => $articles, 'column' => $orderBy->type, 'upOrDown' => $orderBy->upOrDown]);
+    }
+
+
+    public function commentRazor()
+    {
+        $title = Utils::request("titleArticle", "");
+        if (!isset($title)){
+            // On redirige vers la page d'administration.
+            Utils::redirect("admin");
+        }
+        
+
+
+
+        // On ouvre la page
+        $view = new View("Audience");
+        $view->render("commentRazor", ['title' => $title]);
+        
     }
 
 }
