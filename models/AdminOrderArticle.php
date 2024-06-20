@@ -1,6 +1,4 @@
 <?php
-
-
 class AdminOrderArticle
 {
     private $orderBy; 
