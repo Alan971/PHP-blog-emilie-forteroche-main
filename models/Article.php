@@ -12,6 +12,7 @@
     private ?DateTime $dateCreation = null;
     private ?DateTime $dateUpdate = null;
     private int $countView = 0;  
+    private int $countComments = -1;
 
     /**
      * Setter pour l'id de l'utilisateur. 
@@ -31,19 +32,55 @@
         return $this->idUser;
     }
 
+    /**
+     * incremente le nombre de vue.
+     * @return void
+     */
     public function incrementCountView() : void 
     {
         $this->countView++;
     }
 
+    /**
+     * Setter pour le nombre de vue.
+     * @param int
+     * @return void
+     */
     public function setCountView(int $countView) : void
     {
         $this->countView = $countView;
     }
 
+    /**
+     * Getter pour le nombre de vue
+     * @return int
+     */
     public function getCountView() : int
     {
         return $this->countView;
+    }
+
+    /**
+     * Getter pour le compteur de commentaire.
+     * @return int
+     */
+    public function getCountComments() : int
+    {
+        if($this->countComments < 0)
+        {
+
+        }
+        return $this->countComments;
+    }
+
+    /**
+     * Setter pour le nombre de commentaires.
+     * @param int
+     * @return void
+     */
+    public function setCountComments(int $countComments) : void
+    {
+        $this->countComments = $countComments;
     }
 
     /**

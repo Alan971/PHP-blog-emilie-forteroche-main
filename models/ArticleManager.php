@@ -107,4 +107,13 @@ class ArticleManager extends AbstractEntityManager
         $sql = "DELETE FROM article WHERE id = :id";
         $this->db->query($sql, ['id' => $id]);
     }
+
+    public function countCommentsByArticle(Article $article) : int
+    {
+        $sql = "SELECT COUNT(id) FROM comment WHERE id_article = :id_article";
+        $result = $this->db->query($sql, ['id_article' => $article->getId()]);
+        $count = $result->fetch();
+        return $count['COUNT(id)'];
+    }
+
 }

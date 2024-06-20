@@ -43,7 +43,7 @@
         <div class="articleLine flag<?=($flag%2)?>" >
             <div class="title"><?= $article->getTitle() ?></div>
             <div class="viewNumber"><?=$article->getCountView() ?></div>
-            <div class="commentNumber"><?= "A traiter" ?></div>
+            <div class="commentNumber"><?= $article->getCountComments() ?></div>
             <div class="publicationDate"><?= Utils::convertDateToFrenchFormat($article->getDateCreation()) ?></div>
         </div>
     <?php 

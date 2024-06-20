@@ -200,9 +200,16 @@ class AdminController {
         $newOrderBy->setOrderBy($nextOrder, $previousOrder);
         $orderBy = $newOrderBy->getOrderBy();
 
+
+
         // TODO On selectionne les articles dans l'ordre souhaité
         $articleManager = new ArticleManager();
         $articles = $articleManager->getAllArticles($orderBy);
+
+        // comptage des commentaires
+        foreach ($articles as $article){
+            $article->setCountComments($articleManager->countCommentsByArticle($article));
+        }
 
         // On ouvre la page
         $view = new View("Audience");
