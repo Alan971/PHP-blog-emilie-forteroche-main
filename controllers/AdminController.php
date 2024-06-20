@@ -182,26 +182,31 @@ class AdminController {
      * Visualisation de l'audience des articles.
      * @return void
      */
-    public function showAudience() :void
+    public function showAudience() : void
     {
         $this->checkIfUserIsConnected();
 
+        // données du navigateur
         $type = Utils::request("type", "");
+        $previousType = Utils::request("previousType", "");
+        $previousUpOrDown = Utils::request("previousUpOrDown", "");
         $upOrDown = Utils::request("upOrDown", "");
-        $previousOrder = new Order($type, $upOrDown );
 
-        // traitement de orderBy
+        $nextOrder = new Order($type, $upOrDown );
+        $previousOrder = new Order($previousType, $previousUpOrDown);
+
+        // préparer le nouvel ordre
         $newOrderBy = new AdminOrderArticle();
-        $newOrderBy->setOrderBy($previousOrder);
-        $newOrder = $newOrderBy->getOrderBy();
+        $newOrderBy->setOrderBy($nextOrder, $previousOrder);
+        $orderBy = $newOrderBy->getOrderBy();
 
         // TODO On selectionne les articles dans l'ordre souhaité
         $articleManager = new ArticleManager();
-        $articles = $articleManager->getAllArticles($newOrder);
+        $articles = $articleManager->getAllArticles($orderBy);
 
         // On ouvre la page
         $view = new View("Audience");
-        $view->render("audience", ['articles' => $articles, 'column' => $newOrder->type, 'upOrDown' => $newOrder->upOrDown]);
+        $view->render("audience", ['articles' => $articles, 'column' => $orderBy->type, 'upOrDown' => $orderBy->upOrDown]);
     }
 
 }

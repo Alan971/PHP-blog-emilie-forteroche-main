@@ -16,23 +16,23 @@
     ?>
                 <div class="articleLine">
                     <div class="title">
-                        <a href="index.php?action=showAudience&type=title&upOrDown=<?=$upOrDown?>">
+                        <a href="index.php?action=showAudience&previousType=<?=$column?>&previousUpOrDown=<?=$upOrDown?>&type=title&upOrDown=<?=$upOrDown?>">
                             Titres des articles <?if($column == 'title'){echo "  " . $upOrDown;}?>
                         </a>
                     </div>
                     <div class="viewNumber">
-                        <a href="index.php?action=showAudience&type=viewNumber&upOrDown=<?=$upOrDown?>">
+                        <a href="index.php?action=showAudience&previousType=<?=$column?>&previousUpOrDown=<?=$upOrDown?>&type=viewNumber&upOrDown=<?=$upOrDown?>">
                             Nombre de vues <?if($column == 'viewNumber'){echo "  " . $upOrDown;}?>
                         
                         </a>
                     </div>
                     <div class="commentNumber">
-                        <a href="index.php?action=showAudience&type=commentNumber&upOrDown=<?=$upOrDown?>">
+                        <a href="index.php?action=showAudience&previousType=<?=$column?>&previousUpOrDown=<?=$upOrDown?>&type=commentNumber&upOrDown=<?=$upOrDown?>">
                             Nombre de commentaires <?if($column == 'commentNumber'){echo "  " . $upOrDown;}?>
                         </a>
                     </div>
                     <div class="publicationDate">
-                        <a href="index.php?action=showAudience&type=publicationDate&upOrDown=<?=$upOrDown?>">
+                        <a href="index.php?action=showAudience&previousType=<?=$column?>&previousUpOrDown=<?=$upOrDown?>&type=publicationDate&upOrDown=<?=$upOrDown?>">
                             Date de publication <?if($column == 'publicationDate'){echo "  " . $upOrDown;}?>
 
                         </a>
