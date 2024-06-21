@@ -319,6 +319,12 @@ a.info {
     display: flex; 
 }
 
+.articleLine > div {
+    padding: 20px;
+    border: 1px solid var(--backgroundColor);
+}
+
+/* parie Audience */
 .flag0{
     background-color: var(--alternateCommentPaleColor);
 }
@@ -360,11 +366,63 @@ a.info {
     width: 20%;
 }
 
-.articleLine > div {
-    padding: 20px;
-    border: 1px solid var(--backgroundColor);
+/* partie suppression de commentaire */
+.titleAndDate{
+    width: 100%;
+    display:block;
+    padding-top: 20px;
+}
+.titleAndDate p, span{
+    text-align: center;
+}
+#litleTitle{
+    font-size:larger;
+    font-weight: bold;
 }
 
+.commentRazor{
+    width:100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 50px;
+}
+#commentslist{
+    width:25%;
+    height: 30px;
+}
+/* #commentslist option[value="18"]:checked ~ .revealedContent p
+{
+    display: none;
+}
+#commentslist option[value="19"]:checked ~ .test
+{
+    content: "essais concluant";
+} */
+
+.revealedContent{
+    width:40%;
+    height: auto;
+    padding-left: 20px;
+    padding-right: 20px;
+    position: relative;
+}
+.revealedContent p{
+    position:absolute;
+    left: 0;
+    top: 0;
+}
+.buttonChoice{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.buttonChoice a, input{
+    height: 30px;
+    width: 100%;
+    margin-bottom: 5px;
+    text-align: center;
+}
 
 /** 
  * Footer global de la page.

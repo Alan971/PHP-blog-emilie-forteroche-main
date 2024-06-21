@@ -214,7 +214,11 @@ class AdminController {
         $view->render("audience", ['articles' => $articles, 'column' => $orderBy->type, 'upOrDown' => $orderBy->upOrDown]);
     }
 
-
+    /**
+     * selection des informations en vu de la suppression d'un commentaire.
+     * envoi vers une page dédiée
+     * @return void
+     */
     public function commentRazor()
     {
         $title = Utils::request("titleArticle", "");
@@ -222,14 +226,46 @@ class AdminController {
             // On redirige vers la page d'administration.
             Utils::redirect("admin");
         }
-        
 
-
+        $articleManager = new ArticleManager();
+        $articles = $articleManager->getAllArticles(); 
+        foreach ($articles as $article){
+            if($article->getTitle() == $title)
+            {
+                $selectedArticle = $article;
+            }
+        }
+        $commentsManager = new CommentManager;
+        $comments = $commentsManager->getAllCommentsByArticleId($selectedArticle->getId());
 
         // On ouvre la page
-        $view = new View("Audience");
-        $view->render("commentRazor", ['title' => $title]);
+        $view = new View("Suppression de commentaire");
+        $view->render("commentRazor", ['selectedArticle' => $selectedArticle, 'comments' => $comments]);
         
     }
+    /**
+     * Suppression d'un commentaire.
+     * @return void
+     */
+    public function deleteComment() : void
+    {
+        $idComment = Utils::request("commentslist", "");
+        if (isset($idComment)){
+            $comment= new Comment;
+            $comment->setId($idComment);
+            $commentsManager = new CommentManager;
+            if($commentsManager->deleteComment($comment)){
+                // On redirige vers la page d'administration.
+                Utils::redirect("admin");
+            }
+            else{
+                throw new Exception("Une erreur est survenue : aucun commentaire n'a été sélectionné");
+            }
+        }
+        else{
+            throw new Exception("Le commentaire n'existe pas.");
+        }
+    }
+
 
 }
