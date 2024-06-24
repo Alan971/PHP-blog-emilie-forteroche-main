@@ -4,10 +4,7 @@
      * 
      */
     ?>
-
-    
 <h2>Audience des articles</h2>
-
 <div class="adminArticle">
     <?php 
         $flag=0;

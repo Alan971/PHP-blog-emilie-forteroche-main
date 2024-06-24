@@ -8,8 +8,12 @@
 <h2>Edition des articles</h2>
 
 <div class="adminArticle">
-    <?php foreach ($articles as $article) { ?>
-        <div class="articleLine">
+    <?php 
+    $flag = 0;
+    foreach ($articles as $article) { 
+        
+        ?>
+        <div class="articleLine flag<?=($flag%2)?>">
             <div class="title">
                 <a href="index.php?action=supprComment&titleArticle=<?= $article->getTitle() ?>" title="Cliquez ici pour gérer les commentaires">
                     <?= $article->getTitle() ?>
@@ -20,7 +24,9 @@
             <div><a class="submit" href="index.php?action=deleteArticle&id=<?= $article->getId() ?>" 
                 <?= Utils::askConfirmation("Êtes-vous sûr de vouloir supprimer cet article ?") ?> >Supprimer</a></div>
         </div>
-    <?php } ?>
+    <?php
+        $flag++; 
+    } ?>
 </div>
 
 <div>
