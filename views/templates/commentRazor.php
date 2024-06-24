@@ -16,7 +16,6 @@
         <p class="info"> Modifié le <?= Utils::convertDateToFrenchFormat($selectedArticle->getDateUpdate()) ?></p>
         <?php } ?>
     </div>
-    
     <div class="commentRazor" id="labelList">
         <select name="commentslist" id="commentslist">
             <option value="-1"></option>
@@ -25,14 +24,14 @@
                 <option value="<?=$comment->getId()?>"><?=$comment->getPseudo() . ", " . Utils::convertDateToFrenchFormat($comment->getDateCreation())?></option>
             <?}?>
         </select>
-        <div class="revealedContent">
-            <?foreach($comments as $comment)
+        <div class = "revealedContent" id = "revealedContent">
+            <? $i = 1;
+            foreach($comments as $comment)
             {
-                echo "<p hidden id='" . $comment->getId() . "'>" . $comment->getContent() . "</p>";
-            }?>
-        </div>
-        <div class="test">
-            test
+                echo "<p hidden id='" . $i . "'>" . $comment->getContent() . "</p>";
+                $i++;
+            }
+            ?>
         </div>
         <div class = "buttonChoice">
             <input type="hidden" name="action" value="deleteComment">
@@ -41,5 +40,19 @@
         </div>
     </div>
     </form>
+
+    <script>
+        const selecteur = document.getElementById("commentslist");
+        selecteur.addEventListener("change", function() {
+            var index = selecteur.selectedIndex;
+            div = document.getElementById("revealedContent");
+            var allP = div.querySelectorAll('p');
+            for (let j=1; j<=allP.length; j++)
+            {
+                document.getElementById(j).style.display = 'none';
+            }
+            document.getElementById(index).style.display = 'block';
+        });
+    </script>
 
 

@@ -391,14 +391,6 @@ a.info {
     width:25%;
     height: 30px;
 }
-/* #commentslist option[value="18"]:checked ~ .revealedContent p
-{
-    display: none;
-}
-#commentslist option[value="19"]:checked ~ .test
-{
-    content: "essais concluant";
-} */
 
 .revealedContent{
     width:40%;
