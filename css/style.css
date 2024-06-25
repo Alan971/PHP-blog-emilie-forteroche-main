@@ -324,6 +324,11 @@ a.info {
     border: 1px solid var(--backgroundColor);
 }
 
+
+.title:hover a {
+    color: #f13c1f;
+}
+
 /* parie Audience */
 .flag0{
     background-color: var(--alternateCommentPaleColor);
