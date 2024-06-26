@@ -13,25 +13,24 @@
     ?>
                 <div class="articleLine">
                     <div class="title">
-                        <a href="index.php?action=showAudience&previousType=<?=$column?>&previousUpOrDown=<?=$upOrDown?>&type=title&upOrDown=<?=$upOrDown?>">
-                            Titres des articles <?if($column == 'title'){echo "  " . $upOrDown;}?>
+                        <a href="index.php?action=showAudience&ordercolumn=title&ordertype=<?= $column ==='title' && $type === 'ASC' ?'DESC' : 'ASC' ?>">
+                            Titres des articles <?if($column === 'title'){if($type ==='ASC'){echo "  ↓";}else{echo " ↑";}}?>
                         </a>
                     </div>
-                    <div class="viewNumber">
-                        <a href="index.php?action=showAudience&previousType=<?=$column?>&previousUpOrDown=<?=$upOrDown?>&type=viewNumber&upOrDown=<?=$upOrDown?>">
-                            Nombre de vues <?if($column == 'viewNumber'){echo "  " . $upOrDown;}?>
+                    <div class="count_view">
+                        <a href="index.php?action=showAudience&ordercolumn=count_view&ordertype=<?=$column ==='count_view' && $type === 'ASC' ?'DESC' : 'ASC' ?>">
+                            Nombre de vues <?if($column === 'count_view'){if($type ==='ASC'){echo "  ↓";}else{echo " ↑";}}?>
                         
                         </a>
                     </div>
-                    <div class="commentNumber">
-                        <a href="index.php?action=showAudience&previousType=<?=$column?>&previousUpOrDown=<?=$upOrDown?>&type=commentNumber&upOrDown=<?=$upOrDown?>">
-                            Nombre de commentaires <?if($column == 'commentNumber'){echo "  " . $upOrDown;}?>
+                    <div class="count_comment">
+                        <a href="index.php?action=showAudience&ordercolumn=count_comment&ordertype=<?=$column ==='count_comment' && $type === 'ASC' ?'DESC' : 'ASC' ?>">
+                            Nombre de commentaires <?if($column === 'count_comment'){if($type ==='ASC'){echo "  ↓";}else{echo " ↑";}}?>
                         </a>
                     </div>
-                    <div class="publicationDate">
-                        <a href="index.php?action=showAudience&previousType=<?=$column?>&previousUpOrDown=<?=$upOrDown?>&type=publicationDate&upOrDown=<?=$upOrDown?>">
-                            Date de publication <?if($column == 'publicationDate'){echo "  " . $upOrDown;}?>
-
+                    <div class="date_creation">
+                        <a href="index.php?action=showAudience&ordercolumn=date_creation&ordertype=<?=$column ==='date_creation' && $type === 'ASC' ?'DESC' : 'ASC' ?>">
+                            Date de publication <?if($column === 'date_creation'){if($type ==='ASC'){echo "  ↓";}else{echo " ↑";}}?>
                         </a>
                     </div>
                 </div>
@@ -41,13 +40,13 @@
             <div class = "title">
                 <p><?= $article->getTitle() ?></p>
             </div>
-            <div class = "viewNumber">
+            <div class = "count_view">
                 <p><?=$article->getCountView() ?></p>
             </div>
-            <div class = "commentNumber">
+            <div class = "count_comment">
                 <p><?= $article->getCountComments() ?></p>
             </div>
-            <div class="publicationDate">
+            <div class="date_creation">
                 <p><?= Utils::convertDateToFrenchFormat($article->getDateCreation()) ?> </p>
             </div>
         </div>

@@ -15,7 +15,7 @@
         ?>
         <div class="articleLine flag<?=($flag%2)?>">
             <div class="title">
-                <a href="index.php?action=supprComment&titleArticle=<?= $article->getTitle() ?>" title="Cliquez ici pour gérer les commentaires">
+                <a class="goToDelete" href="index.php?action=supprComment&titleArticle=<?= $article->getTitle() ?>" title="Cliquez ici pour gérer les commentaires">
                     <?= $article->getTitle() ?>
                 </a>
             </div>

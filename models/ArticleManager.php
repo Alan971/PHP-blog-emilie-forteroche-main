@@ -12,41 +12,46 @@ class ArticleManager extends AbstractEntityManager
      */
     public function getAllArticles(?Order $orderBy = null) : array
     {
-        $sql = "SELECT * FROM article";
-        if(isset($orderBy))
-        {
-            switch($orderBy->type)
-            {
-                case "title" :
-                    $sql .= " ORDER BY $orderBy->type ";
-                    break;
-                case "viewNumber" :
-                    $sql .= " ORDER BY count_view ";
-                    break;
-                case "commentNumber" :
-                    $sql = " SELECT a.*, COUNT(c.id_article) as compteur 
-                            FROM `article` a LEFT JOIN comment c ON c.id_article = a.id 
-                            GROUP BY a.id ORDER BY compteur  ";
-                    break;
-                case "publicationDate" :
-                    $sql .= " ORDER BY date_creation ";
-                    break;
-            }
-            switch($orderBy->upOrDown)
-            {
-                case "↓" :
-                    $sql .= "ASC";
-                    break;
-                case "↑" :
-                    $sql .= "DESC";
-                    break;
-            }
-        }
+       $sql = "SELECT 
+                    a.id,
+                    a.title,
+                    a.content,
+                    a.date_creation,
+                    a.date_update,
+                    a.count_view,
+                COUNT(distinct c.id) as count_comment
+                FROM article a
+                LEFT JOIN comment c 
+                    ON c.id_article = a.id
+                GROUP BY
+                    a.id,
+                    a.title,
+                    a.content,
+                    a.count_view,
+                    a.date_creation,
+                    a.date_update
+                ORDER BY ";
+                if(isset($orderBy))
+                {
+                    $sql .= $orderBy->column . " " . $orderBy->type;
+                }
+                else
+                {
+                    $sql .= "a.id ASC";
+                }
         $result = $this->db->query($sql);
         $articles = [];
-
+        $i = $j = 0;
         while ($article = $result->fetch()) {
+            $countComment[] = $article['count_comment'];
             $articles[] = new Article($article);
+            $i++;
+        }
+        // Je ne comprends pas pourquoi je suis obligé d'appliquer ce patch
+        // théoriquement $articles[] devrait déjà contenir countComments
+        while ( $j < $i) {
+            $articles[$j]->setCountComments($countComment[$j]);
+            $j++;
         }
         return $articles;
     }
@@ -137,13 +142,4 @@ class ArticleManager extends AbstractEntityManager
         $sql = "DELETE FROM article WHERE id = :id";
         $this->db->query($sql, ['id' => $id]);
     }
-
-    public function countCommentsByArticle(Article $article) : int
-    {
-        $sql = "SELECT COUNT(id) FROM comment WHERE id_article = :id_article";
-        $result = $this->db->query($sql, ['id_article' => $article->getId()]);
-        $count = $result->fetch();
-        return $count['COUNT(id)'];
-    }
-
 }

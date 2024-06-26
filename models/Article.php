@@ -66,10 +66,6 @@
      */
     public function getCountComments() : int
     {
-        if($this->countComments < 0)
-        {
-
-        }
         return $this->countComments;
     }
 

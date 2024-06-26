@@ -2,12 +2,12 @@
 
 class Order
 {
-    public string $type; 
-    public string $upOrDown;
+    public string $column; 
+    public string $type;
 
-    public function __construct(?string $type='', ?string $upOrDown='')
+    public function __construct(?string $column='', ?string $type='')
     {
         $this->type = $type;
-        $this->upOrDown = $upOrDown;
+        $this->column = $column;
     }
 }

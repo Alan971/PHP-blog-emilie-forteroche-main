@@ -187,31 +187,19 @@ class AdminController {
         $this->checkIfUserIsConnected();
 
         // données du navigateur
-        $type = Utils::request("type", "");
-        $previousType = Utils::request("previousType", "");
-        $previousUpOrDown = Utils::request("previousUpOrDown", "");
-        $upOrDown = Utils::request("upOrDown", "");
+        $ordercolumn = Utils::request("ordercolumn", "a.id");
+        $ordertype = Utils::request("ordertype", "ASC");
+        
 
-        $nextOrder = new Order($type, $upOrDown );
-        $previousOrder = new Order($previousType, $previousUpOrDown);
-
-        // préparer le nouvel ordre
-        $newOrderBy = new AdminOrderArticle();
-        $newOrderBy->setOrderBy($nextOrder, $previousOrder);
-        $orderBy = $newOrderBy->getOrderBy();
+        $Order = new Order($ordercolumn, $ordertype );
 
         // On selectionne les articles dans l'ordre souhaité
         $articleManager = new ArticleManager();
-        $articles = $articleManager->getAllArticles($orderBy);
-
-        // comptage des commentaires
-        foreach ($articles as $article){
-            $article->setCountComments($articleManager->countCommentsByArticle($article));
-        }
+        $articles = $articleManager->getAllArticles($Order);
 
         // On ouvre la page
         $view = new View("Audience");
-        $view->render("audience", ['articles' => $articles, 'column' => $orderBy->type, 'upOrDown' => $orderBy->upOrDown]);
+        $view->render("audience", ['articles' => $articles, 'column' => $ordercolumn, 'type' => $ordertype]);
     }
 
     /**

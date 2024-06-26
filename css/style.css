@@ -324,9 +324,8 @@ a.info {
     border: 1px solid var(--backgroundColor);
 }
 
-
-.title:hover a {
-    color: #f13c1f;
+.title:hover .goToDelete {
+    color: var(--titleColor);
 }
 
 /* parie Audience */
@@ -344,11 +343,11 @@ a.info {
     width: 40%;
 }
 
-.viewNumber p{
+.count_view p{
     margin-left: auto;
     margin-right: auto;
 }
-.commentNumber p{
+.count_comment p{
     margin-left: auto;
     margin-right: auto;
 }
@@ -358,16 +357,16 @@ a.info {
     width : 40%;
 }
 
-.articleLine .viewNumber {
-    width: 15%;
+.articleLine .count_view {
+    width: 17%;
     text-align: center;
 }
 
-.articleLine .commentNumber {
-    width: 25%;
+.articleLine .count_comment {
+    width: 23%;
 }
 
-.articleLine .publicationDate {
+.articleLine .date_creation {
     width: 20%;
 }
 
