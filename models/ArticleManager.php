@@ -31,12 +31,22 @@ class ArticleManager extends AbstractEntityManager
                     a.date_creation,
                     a.date_update
                 ORDER BY ";
-                if(isset($orderBy))
-                {
-                    $sql .= $orderBy->column . " " . $orderBy->type;
+                if(isset($orderBy)) {
+                    //controle d'injection url
+                    if ($orderBy->column === 'title' || $orderBy->column === 'count_view'|| $orderBy->column === 'date_creation'|| $orderBy->column === 'count_comment'){
+                        $sql .= $orderBy->column . " ";
+                        if($orderBy->type ==="ASC" || $orderBy->type ==="DESC"){
+                            $sql .= $orderBy->type;
+                        }
+                        else {
+                            $sql .="ASC";
+                        }
+                    }
+                    else {
+                        $sql .= "a.id ASC";
+                    }
                 }
-                else
-                {
+                else {
                     $sql .= "a.id ASC";
                 }
         $result = $this->db->query($sql);
