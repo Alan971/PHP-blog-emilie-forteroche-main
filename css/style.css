@@ -229,6 +229,9 @@ article > .footer {
     font-weight: bold;
     color: var(--dateColor);
 }
+.titleAndDate .info {
+    font-size : 9px;
+}
 
 .articleList > article:hover .info {
     color: var(--commentPaleColor);
@@ -340,7 +343,7 @@ a.info {
 
 .articleLine .title {
     font-weight: bold;
-    width: 40%;
+    width: 39%;
 }
 
 .count_view p{
@@ -363,11 +366,11 @@ a.info {
 }
 
 .articleLine .count_comment {
-    width: 23%;
+    width: 25%;
 }
 
 .articleLine .date_creation {
-    width: 20%;
+    width: 19%;
 }
 
 /* partie suppression de commentaire */
@@ -380,7 +383,7 @@ a.info {
     text-align: center;
 }
 #litleTitle{
-    font-size:larger;
+    font-size : 26px;
     font-weight: bold;
 }
 

@@ -4,7 +4,7 @@
      * Il affiche permet de supprimer d'un d'entre eux
      */
 ?>
-<h2>Suppression d'un commentaire de l'article : </h2>
+<h2>Gestion des commentaires de l'article : </h2>
 
 <form name="deledeComment" method="POST" action="index.php?action=deleteComment">
 <div class = "titleAndDate">
@@ -16,7 +16,7 @@
 </div>
 <div class="commentRazor" id="labelList">
     <select name="commentslist" id="commentslist">
-        <option value="-1"></option>
+        <option value="-1">Selectionnez un commentaire</option>
         <?foreach($comments as $comment)
         {?>
             <option value="<?=$comment->getId()?>"><?=$comment->getPseudo() . ", " . Utils::convertDateToFrenchFormat($comment->getDateCreation())?></option>
